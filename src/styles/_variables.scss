@@ -6,7 +6,7 @@ $lendsqr-bg: #fbfbfb;
 $lendsqr-white: #ffffff;
 
 // Semantic Colors
-$lendsqr-red: #e4033b;
+$error-red: #e4033b;
 $lendsqr-green: #39cd62;
 $lendsqr-pink: #df18ff;
 $lendsqr-yellow: #e9b200;
@@ -33,27 +33,69 @@ $border-2: 2px;
 $card-grid-spacing: 26px;
 $card-padding: 20px 30px;
 
+// Typography Scale
+$font-size-h1: 40px;
+$font-size-h2: 32px;
+$font-size-body: 20px;
+$font-size-small: 14px;
+$font-size-xs: 12px;
+
+// Typography Mixin
+@mixin text-style($size, $weight: 400, $color: $lendsqr-text, $lh: 100%) {
+	font-size: $size;
+	font-weight: $weight;
+	color: $color;
+	line-height: $lh;
+}
+
+// Button mixin
+@mixin btn-base($bg-color: $lendsqr-teal, $text-color: $lendsqr-white) {
+	background-color: $bg-color;
+	color: $text-color;
+	padding: 14px 24px;
+	border: none;
+	border-radius: $radius-lg;
+	font-weight: 600;
+	font-size: $font-size-small;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		background-color: darken($bg-color, 10%);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
 // Mixins for Media Queries (Saves time on responsiveness)
 @mixin mobile {
-	@media (max-width: #{$mobile-breakpoint}) {
+	@media (min-width: #{$mobile-breakpoint}) {
 		@content;
 	}
 }
 
 @mixin tablet {
-	@media (max-width: #{$tablet-breakpoint}) {
+	@media (min-width: #{$tablet-breakpoint}) {
 		@content;
 	}
 }
 
 @mixin desktop {
-	@media (max-width: #{$desktop-breakpoint}) {
+	@media (min-width: #{$desktop-breakpoint}) {
 		@content;
 	}
 }
 
 @mixin desktop-large {
-	@media (max-width: #{$desktop-lg-breakpoint}) {
+	@media (min-width: #{$desktop-lg-breakpoint}) {
 		@content;
 	}
 }

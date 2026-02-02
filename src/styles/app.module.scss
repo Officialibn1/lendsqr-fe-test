@@ -1,13 +1,159 @@
-.signin-page {
+.signinPage {
 	background-color: $lendsqr-white;
 	display: grid;
 	width: 100%;
 
 	@include tablet {
-		grid-template-columns: 2;
+		grid-template-columns: 60% 40%;
+	}
+
+	@include desktop {
+		grid-template-columns: 50% 50%;
 	}
 }
 
-.signin-form-container {
-	background-color: rgba($lendsqr-text, 0.15);
+.imageSectionContainer {
+	display: none;
+
+	@include tablet {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 80px;
+		// justify-content: center;
+		padding: 40px 40px;
+	}
+}
+
+.mobileLogo {
+	width: 173.76px;
+	height: 36px;
+	margin: 0px auto 180px;
+
+	@include tablet {
+		display: none;
+	}
+}
+
+.logo {
+	width: 173.76px;
+	height: 36px;
+	margin: 80px 40px 80px;
+}
+
+.signInImage {
+	width: 100%;
+	// height: 800px;
+	// aspect-ratio: 16/9;
+}
+
+.titleContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 60px;
+}
+
+.title {
+	@include text-style($font-size-h1, 700, $lendsqr-blue, 120%);
+}
+
+.description {
+	@include text-style($font-size-body, 400, $lendsqr-text);
+}
+
+.signinFormContainer {
+	background-color: rgba($lendsqr-text, 0.02);
+	padding: 40px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	height: 100dvh;
+	justify-content: center;
+	width: 100%;
+
+	@include desktop {
+		padding: 0px 80px;
+	}
+
+	@include desktop-large {
+		padding: 0px 100px;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 450px;
+	gap: 24px;
+}
+
+.fieldGroup {
+	position: relative;
+	width: 100%;
+	// border: 2px solid red;
+}
+
+.input {
+	width: 100%;
+	padding: 8px 16px;
+	height: 50px;
+	border: 2px solid rgba($lendsqr-blue, 0.15);
+	border-radius: $radius-base;
+	font-size: 14px;
+	transition: border-color 0.2s;
+	background-color: transparent;
+
+	&:focus {
+		outline: none;
+		border-color: $lendsqr-teal;
+	}
+}
+
+.showHidePassword {
+	position: absolute;
+	padding: 0px 10px;
+	height: 50px;
+	top: 0px;
+	right: 0px;
+	width: fit-content;
+	background-color: transparent;
+	font-size: $font-size-xs;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	// border: 2px solid green;
+
+	> span {
+		color: $lendsqr-teal;
+	}
+}
+
+.inputError {
+	border-color: $error-red;
+}
+
+.errorText {
+	color: $error-red;
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.submitBtn {
+	@include btn-base($lendsqr-teal, $lendsqr-white);
+	cursor: pointer;
+	margin-top: 6px;
+}
+
+.forgotPassword {
+	@include text-style($font-size-xs, 400, $lendsqr-text);
+
+	&:active {
+		color: $lendsqr-teal;
+	}
+
+	&:hover {
+		color: $lendsqr-teal;
+	}
 }

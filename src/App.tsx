@@ -1,26 +1,111 @@
 // import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
+import lendSqrLogo from "./assets/lendqsr-logo.svg";
+import signInImage from "./assets/pablo-sign-in.svg";
 import "./App.css";
 import "@radix-ui/themes/styles.css";
-import styles from "./styles/app.module.scss";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import styles from "@/styles/app.module.scss";
+import loginFormSchema, {
+	type LoginFormData,
+} from "./components/schemas/loginSchema";
+import { Link } from "react-router";
+import { useState } from "react";
 
 function App() {
-	return (
-		<section className={styles["signin-page"]}>
-			<div>
-				{/* Logo */}
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm<LoginFormData>({
+		resolver: zodResolver(loginFormSchema),
+	});
 
-				{/* Image */}
+	const [showPassword, setShowPassword] = useState(false);
+
+	const onSubmit = async (data: LoginFormData) => {
+		console.log("Form Data:", data);
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+		alert("Login Successful!");
+	};
+	return (
+		<section className={styles.signinPage}>
+			<div className={styles.imageSectionContainer}>
+				<img
+					src={lendSqrLogo}
+					className={styles.logo}
+				/>
+
+				<img
+					src={signInImage}
+					className={styles.signInImage}
+				/>
 			</div>
 
-			<div>
-				<div>
-					<h1>Welcome</h1>
+			<div className={styles.signinFormContainer}>
+				<img
+					src={lendSqrLogo}
+					className={styles.mobileLogo}
+				/>
+				<div className={styles.titleContainer}>
+					<h1 className={styles.title}>Welcome.</h1>
 
-					<p>Enter details to login.</p>
+					<p className={styles.description}>Enter details to login.</p>
 				</div>
 
-				<div>Form</div>
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className={styles.form}>
+					{/* Email Field */}
+					<div className={styles.fieldGroup}>
+						<input
+							{...register("email")}
+							className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+							type='email'
+							id='email'
+							placeholder='Email'
+						/>
+						{errors.email && (
+							<span className={styles.errorText}>{errors.email.message}</span>
+						)}
+					</div>
+
+					{/* Password Field */}
+					<div className={styles.fieldGroup}>
+						<input
+							{...register("password")}
+							className={`${styles.input} ${errors.password ? styles.inputError : ""}`}
+							type={showPassword ? "text" : "password"}
+							id='password'
+							placeholder='Password'
+						/>
+
+						<div
+							className={styles.showHidePassword}
+							onClick={() => setShowPassword((prev) => !prev)}>
+							<span>{showPassword ? "HIDE" : "SHOW"}</span>
+						</div>
+
+						{errors.password && (
+							<span className={styles.errorText}>
+								{errors.password.message}
+							</span>
+						)}
+					</div>
+
+					<Link
+						to={"/"}
+						className={styles.forgotPassword}>
+						FORGOT PASSWORD?
+					</Link>
+
+					<button
+						type='submit'
+						className={styles.submitBtn}
+						disabled={isSubmitting}>
+						{isSubmitting ? "LOGGING IN..." : "LOG IN"}
+					</button>
+				</form>
 			</div>
 		</section>
 	);

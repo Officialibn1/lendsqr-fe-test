@@ -1,0 +1,13 @@
+.signin-page {
+	background-color: $lendsqr-white;
+	display: grid;
+	width: 100%;
+
+	@include tablet {
+		grid-template-columns: 2;
+	}
+}
+
+.signin-form-container {
+	background-color: rgba($lendsqr-text, 0.15);
+}

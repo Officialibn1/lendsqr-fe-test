@@ -1,0 +1,59 @@
+// Brand Colors
+$lendsqr-blue: #213f7d;
+$lendsqr-teal: #39cdcc;
+$lendsqr-text: #545f7d;
+$lendsqr-bg: #fbfbfb;
+$lendsqr-white: #ffffff;
+
+// Semantic Colors
+$lendsqr-red: #e4033b;
+$lendsqr-green: #39cd62;
+$lendsqr-pink: #df18ff;
+$lendsqr-yellow: #e9b200;
+$lendsqr-orange: #f55f44;
+$lendsqr-purple-blue: #5718ff;
+
+// Layout & breakpoints
+$sidebar-width: 283px;
+$mobile-breakpoint: 480px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+$desktop-lg-breakpoint: 1440px;
+
+// Radius
+$radius-lg: 8px;
+$radius-base: 5px;
+$radius-sm: 4px;
+
+// Border Width
+$border-1: 1px;
+$border-2: 2px;
+
+// Spacing
+$card-grid-spacing: 26px;
+$card-padding: 20px 30px;
+
+// Mixins for Media Queries (Saves time on responsiveness)
+@mixin mobile {
+	@media (max-width: #{$mobile-breakpoint}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: #{$tablet-breakpoint}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (max-width: #{$desktop-breakpoint}) {
+		@content;
+	}
+}
+
+@mixin desktop-large {
+	@media (max-width: #{$desktop-lg-breakpoint}) {
+		@content;
+	}
+}

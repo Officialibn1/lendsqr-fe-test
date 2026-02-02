@@ -9,10 +9,13 @@ import styles from "@/styles/app.module.scss";
 import loginFormSchema, {
 	type LoginFormData,
 } from "./components/schemas/loginSchema";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 
 function App() {
+	const navigate = useNavigate();
+
 	const {
 		register,
 		handleSubmit,
@@ -26,7 +29,9 @@ function App() {
 	const onSubmit = async (data: LoginFormData) => {
 		console.log("Form Data:", data);
 		await new Promise((resolve) => setTimeout(resolve, 2000));
-		alert("Login Successful!");
+		toast.success("Login Successful!");
+
+		navigate("/dashboard");
 	};
 	return (
 		<section className={styles.signinPage}>

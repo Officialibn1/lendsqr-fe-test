@@ -4,7 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import UserDetails from "./pages/UserDetails";
 
 const router = createBrowserRouter([
-	{ path: "/", Component: App },
+	{ index: true, Component: App },
 	{
 		path: "/dashboard",
 		Component: Dashboard,

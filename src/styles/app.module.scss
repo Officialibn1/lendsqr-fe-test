@@ -147,7 +147,7 @@
 }
 
 .forgotPassword {
-	@include text-style($font-size-xs, 400, $lendsqr-text);
+	@include text-style($font-size-xs, 600, $lendsqr-teal);
 
 	&:active {
 		color: $lendsqr-teal;

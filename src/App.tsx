@@ -1,4 +1,3 @@
-// import reactLogo from "./assets/react.svg";
 import lendSqrLogo from "./assets/lendqsr-logo.svg";
 import signInImage from "./assets/pablo-sign-in.svg";
 import "./App.css";

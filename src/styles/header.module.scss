@@ -1,0 +1,131 @@
+.header {
+	height: 100px;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	box-shadow: 3px 0px 20px 0px #0000000a;
+
+	@include desktop {
+		padding: 16px 50px;
+	}
+}
+
+.logo {
+	width: 144.8px;
+	height: 30px;
+}
+
+.searchContainer {
+	display: none;
+	height: 40px;
+	width: fit-content;
+	border-radius: $radius-lg;
+	margin-left: 30px;
+	overflow: hidden;
+
+	@include tablet {
+		display: flex;
+		width: 400px;
+	}
+
+	@include desktop {
+		margin-left: 70px;
+	}
+
+	@include desktop-large {
+		margin-left: 168px;
+	}
+}
+
+.searchInput {
+	flex: 1;
+	height: 100%;
+	padding: 0px 20px;
+	border: 1px solid rgba($lendsqr-blue, 0.15);
+	border-right: 0px;
+	border-radius: $radius-lg 0px 0px $radius-lg;
+	transition: border-color 0.2s;
+
+	&:focus {
+		outline: none;
+		border-color: $lendsqr-teal;
+	}
+}
+
+.searchButton {
+	// flex: 1;
+	background-color: $lendsqr-teal;
+	max-width: 60px;
+	height: 100%;
+	border: 0px;
+	outline: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@include tablet {
+		width: fit-content;
+		flex: auto;
+	}
+}
+
+.searchButtonIcon {
+	color: $lendsqr-white;
+	width: 20px;
+	height: 20px;
+
+	// color: #ffffff;
+}
+
+.rightItems {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	width: fit-content;
+	margin-left: auto;
+
+	& > p {
+		text-decoration: underline;
+		color: $lendsqr-blue;
+		font-weight: 500;
+		display: none;
+
+		@include desktop {
+			display: block;
+		}
+	}
+
+	@include desktop {
+		gap: 30px;
+	}
+}
+
+.avatarContainer {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: fit-content;
+}
+
+.avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 100px;
+}
+
+.avatarName {
+	display: none;
+	font-size: $font-size-base;
+	font-weight: 600;
+	color: $lendsqr-blue;
+
+	@include desktop {
+		display: block;
+	}
+}
+
+.avatarIcon {
+	width: 20px;
+	height: 20px;
+	color: $lendsqr-blue;
+}

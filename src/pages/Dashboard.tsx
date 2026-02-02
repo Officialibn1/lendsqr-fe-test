@@ -1,8 +1,10 @@
+import Header from "../components/ui/header";
+
 const Dashboard = () => {
 	return (
-		<div>
-			<h1>Dashboard</h1>
-		</div>
+		<section>
+			<Header />
+		</section>
 	);
 };
 

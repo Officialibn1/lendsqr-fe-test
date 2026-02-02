@@ -1,0 +1,17 @@
+.section {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.mainContainer {
+	display: flex;
+	position: relative;
+}
+
+.outletWrapper {
+	width: 100%;
+	padding: 40px;
+	height: calc(100dvh - 100px);
+	background-color: $lendsqr-bg;
+}

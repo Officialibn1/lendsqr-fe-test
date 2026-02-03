@@ -1,0 +1,396 @@
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	width: 100%;
+}
+
+.cardsContainer {
+	display: grid;
+	gap: 26px;
+
+	@include tablet {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include desktop {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.errorCard {
+	max-width: 500px;
+	margin: 50px auto;
+	text-align: center;
+
+	> h1 {
+		font-size: 30px;
+		font-weight: 600;
+	}
+
+	> h3 {
+		font-size: 24px;
+		font-weight: 400;
+	}
+
+	> button {
+		width: 100%;
+		margin-top: 20px;
+		background-color: rgba($color: $lendsqr-red, $alpha: 0.1);
+		color: $lendsqr-red;
+		font-weight: 600;
+	}
+}
+
+.card {
+	width: 100%;
+	min-height: 160px;
+	padding: 20px 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	background-color: $lendsqr-white;
+	border-radius: $radius-sm;
+	box-shadow: 3px 5px 20px 0px #0000000a;
+	border: 1px solid rgba($lendsqr-blue, 0.06);
+}
+
+.cardIcon {
+	width: 18px;
+	height: 18px;
+}
+
+.usersIcon {
+	@include cardIcon($lendsqr-pink);
+}
+
+.activeUsersIcon {
+	@include cardIcon($lendsqr-purple-blue);
+}
+
+.loadUsersIcon {
+	@include cardIcon($lendsqr-orange);
+}
+
+.savingsUsersIcon {
+	@include cardIcon($lendsqr-red);
+}
+
+.cardTitle {
+	font-size: $font-size-small;
+	font-weight: 500;
+}
+
+.cardValue {
+	font-size: 24px;
+	font-weight: 700;
+	color: $lendsqr-blue;
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+}
+
+.searchAndFilterContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 40px;
+	gap: 20px;
+
+	@include tablet {
+		flex-direction: row;
+	}
+}
+
+.filterButton {
+	width: 100%;
+	height: 100%;
+	border-radius: $radius-sm;
+	background-color: $lendsqr-teal;
+	color: $lendsqr-white;
+	border: 0;
+	outline: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	font-weight: 500;
+	font-size: $font-size-small;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba($color: $lendsqr-teal, $alpha: 0.9);
+	}
+
+	> svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	@include tablet {
+		width: 120px;
+	}
+
+	@include desktop {
+		width: 150px;
+	}
+}
+
+.searchField {
+	width: 100%;
+	padding: 8px 16px;
+	height: 100%;
+	border: 1px solid rgba($lendsqr-blue, 0.15);
+	border-radius: $radius-base;
+	font-size: 14px;
+	transition: border-color 0.2s;
+	background-color: transparent;
+	position: relative;
+
+	&:focus {
+		outline: none;
+		border-color: $lendsqr-teal;
+	}
+
+	@include tablet {
+		flex: 1;
+	}
+}
+
+.tableContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	min-height: 600px;
+	background-color: $lendsqr-white;
+	border-radius: $radius-sm;
+	border: 1px solid rgba($lendsqr-blue, 0.06);
+	box-shadow: 3px 5px 20px 0px #0000000a;
+
+	@include tablet {
+		min-height: 700px;
+	}
+}
+
+.tableWrapper {
+	padding: 30px;
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: auto;
+	max-height: 750px;
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th {
+			text-align: left;
+			font-size: 12px;
+			font-weight: 600;
+			color: #545f7d;
+			padding: 15px 10px;
+			width: fit-content;
+			white-space: nowrap;
+
+			.headerContent {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				cursor: pointer;
+
+				> svg {
+					width: 18px;
+					height: 18px;
+				}
+			}
+		}
+
+		td {
+			padding: 20px 10px;
+			border-top: 1px solid rgba(33, 63, 125, 0.05);
+			font-size: 14px;
+			color: #545f7d;
+			width: fit-content;
+			min-width: 120px;
+			white-space: nowrap;
+		}
+	}
+}
+
+.paginationFooter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #545f7d;
+	// border: 2px solid green;
+	padding: 20px 30px;
+}
+
+.pageSizeSelector {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	width: fit-content;
+
+	select {
+		background: rgba(33, 63, 125, 0.1);
+		border-radius: 4px;
+		padding: 7px 12px;
+		margin: 0 10px;
+		border: none;
+		min-width: 80px;
+	}
+
+	span {
+		white-space: nowrap;
+	}
+}
+.paginationControls {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	width: fit-content;
+}
+
+.pagBtn {
+	background: $lendsqr-bg;
+	border: none;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	cursor: pointer;
+	color: $lendsqr-blue;
+
+	&:disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+}
+
+.pageNumbers {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+
+	button {
+		background: none;
+		border: none;
+		color: $lendsqr-text;
+		padding: 5px 10px;
+		cursor: pointer;
+		font-size: 14px;
+		border-radius: 4px;
+
+		&.active {
+			font-weight: bold;
+			color: $lendsqr-blue;
+			opacity: 1;
+			background: rgba($color: $lendsqr-text, $alpha: 0.08);
+		}
+
+		&:hover:not(.active) {
+			background: rgba($color: $lendsqr-text, $alpha: 0.1);
+		}
+	}
+
+	.ellipsis {
+		color: $lendsqr-text;
+		padding: 5px 10px;
+		font-size: 14px;
+	}
+}
+
+.activePage {
+	background: rgba($color: $lendsqr-blue, $alpha: 0.1) !important;
+	color: $lendsqr-blue !important;
+	font-weight: 600 !important;
+}
+
+.actionBtn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: $lendsqr-text;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+
+	&:hover {
+		background: rgba($color: $lendsqr-text, $alpha: 0.1);
+	}
+}
+
+.dropDownContent {
+	width: 180px;
+	right: 80px;
+	position: absolute;
+	border-color: rgba($color: $lendsqr-text, $alpha: 0.05);
+	border: none;
+	outline-color: rgba($color: $lendsqr-text, $alpha: 0.05);
+	border-radius: $radius-sm;
+}
+
+.dropDownItemLink {
+	text-decoration: none !important;
+}
+
+.dropDownItem {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	height: 40px;
+	text-decoration: none;
+	cursor: pointer;
+
+	> span {
+		font-size: $font-size-small;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	&:hover {
+		background: rgba($color: $lendsqr-text, $alpha: 0.1) !important;
+	}
+}
+
+.dropDownItemIcon {
+	width: 16px;
+	height: 16px;
+}
+
+.statusBadge {
+	padding: 8px 16px;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 500;
+
+	&.statusActive {
+		color: $lendsqr-green;
+		background: rgba($lendsqr-green, 0.06);
+	}
+	&.statusInactive {
+		color: $lendsqr-text;
+		background: rgba($lendsqr-text, 0.06);
+	}
+	&.statusPending {
+		color: $lendsqr-yellow;
+		background: rgba($lendsqr-yellow, 0.06);
+	}
+	&.statusBlacklisted {
+		color: $lendsqr-red;
+		background: rgba($lendsqr-red, 0.06);
+	}
+}

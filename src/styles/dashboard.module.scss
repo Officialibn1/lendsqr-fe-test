@@ -14,4 +14,6 @@
 	padding: 40px;
 	height: calc(100dvh - 100px);
 	background-color: $lendsqr-bg;
+	overflow-y: auto;
+	overflow-x: auto;
 }

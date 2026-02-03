@@ -9,6 +9,7 @@ $lendsqr-white: #ffffff;
 
 // Semantic Colors
 $error-red: #e4033b;
+$lendsqr-red: #e4033b;
 $lendsqr-green: #39cd62;
 $lendsqr-pink: #df18ff;
 $lendsqr-yellow: #e9b200;
@@ -76,6 +77,16 @@ $font-size-xs: 12px;
 		opacity: 0.6;
 		cursor: not-allowed;
 	}
+}
+
+@mixin cardIcon($icon-bg-color) {
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	background-color: rgba($color: $icon-bg-color, $alpha: 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 // Mixins for Media Queries (Saves time on responsiveness)

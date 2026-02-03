@@ -13,7 +13,7 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	@include desktop {
+	@include desktop-big {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
@@ -96,9 +96,9 @@
 
 .searchAndFilterContainer {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	width: 100%;
-	height: 40px;
+	height: fit-content;
 	gap: 20px;
 
 	@include tablet {
@@ -108,7 +108,7 @@
 
 .filterButton {
 	width: 100%;
-	height: 100%;
+	height: 40px;
 	border-radius: $radius-sm;
 	background-color: $lendsqr-teal;
 	color: $lendsqr-white;
@@ -143,7 +143,7 @@
 .searchField {
 	width: 100%;
 	padding: 8px 16px;
-	height: 100%;
+	height: 40px;
 	border: 1px solid rgba($lendsqr-blue, 0.15);
 	border-radius: $radius-base;
 	font-size: 14px;
@@ -230,6 +230,11 @@
 	color: #545f7d;
 	// border: 2px solid green;
 	padding: 20px 30px;
+	flex-direction: column;
+
+	@include tablet {
+		flex-direction: row;
+	}
 }
 
 .pageSizeSelector {

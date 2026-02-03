@@ -21,6 +21,7 @@ $sidebar-width: 373px;
 $mobile-breakpoint: 480px;
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1024px;
+$desktop-big-breakpoint: 1220px;
 $desktop-lg-breakpoint: 1440px;
 
 // Radius
@@ -104,6 +105,12 @@ $font-size-xs: 12px;
 
 @mixin desktop {
 	@media (min-width: #{$desktop-breakpoint}) {
+		@content;
+	}
+}
+
+@mixin desktop-big {
+	@media (min-width: #{$desktop-big-breakpoint}) {
 		@content;
 	}
 }

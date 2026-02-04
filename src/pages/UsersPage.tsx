@@ -21,6 +21,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useDebounce } from "use-debounce";
 import { FilterDropdown } from "../components/ui/filter-dropdown";
+import { Pagination } from "../components/ui/pagination";
 
 const UsersPage = () => {
 	"use no memo";
@@ -30,7 +31,6 @@ const UsersPage = () => {
 	const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
 	const [sorting, setSorting] = useState<SortingState>([]);
 
-	// Combine search term with other filters
 	const combinedFilters: FilterParams = {
 		...filters,
 		searchTerm: debouncedSearchTerm,
@@ -46,6 +46,7 @@ const UsersPage = () => {
 		setIsFilterDropdownOpen(false);
 	};
 
+	// eslint-disable-next-line react-hooks/incompatible-library
 	const table = useReactTable({
 		data: data || [],
 		columns: userColumns,
@@ -260,108 +261,14 @@ const UsersPage = () => {
 							</button>
 
 							<div className={styles.pageNumbers}>
-								{(() => {
-									const currentPage = table.getState().pagination.pageIndex;
-									const totalPages = table.getPageCount();
-									const pages = [];
-
-									if (totalPages <= 7) {
-										// Show all pages if 7 or fewer
-										for (let i = 0; i < totalPages; i++) {
-											pages.push(
-												<button
-													key={i}
-													className={
-														currentPage === i
-															? styles.activePage
-															: styles.pageBtn
-													}
-													onClick={() => table.setPageIndex(i)}>
-													{i + 1}
-												</button>,
-											);
-										}
-									} else {
-										// Always show first page
-										pages.push(
-											<button
-												key={0}
-												className={
-													currentPage === 0 ? styles.activePage : styles.pageBtn
-												}
-												onClick={() => table.setPageIndex(0)}>
-												1
-											</button>,
-										);
-
-										// Show ellipsis if current page is far from start
-										if (currentPage > 3) {
-											pages.push(
-												<span
-													key='start-ellipsis'
-													className={styles.ellipsis}>
-													...
-												</span>,
-											);
-										}
-
-										// Show pages around current page
-										const startPage = Math.max(
-											1,
-											Math.min(currentPage - 1, totalPages - 5),
-										);
-										const endPage = Math.min(
-											totalPages - 1,
-											Math.max(currentPage + 1, 5),
-										);
-
-										for (let i = startPage; i < endPage; i++) {
-											if (i !== 0 && i !== totalPages - 1) {
-												pages.push(
-													<button
-														key={i}
-														className={
-															currentPage === i
-																? styles.activePage
-																: styles.pageBtn
-														}
-														onClick={() => table.setPageIndex(i)}>
-														{i + 1}
-													</button>,
-												);
-											}
-										}
-
-										// Show ellipsis if current page is far from end
-										if (currentPage < totalPages - 4) {
-											pages.push(
-												<span
-													key='end-ellipsis'
-													className={styles.ellipsis}>
-													...
-												</span>,
-											);
-										}
-
-										// Always show last page
-										if (totalPages > 1) {
-											pages.push(
-												<button
-													key={totalPages - 1}
-													className={
-														currentPage === totalPages - 1
-															? styles.activePage
-															: styles.pageBtn
-													}
-													onClick={() => table.setPageIndex(totalPages - 1)}>
-													{totalPages}
-												</button>,
-											);
-										}
-									}
-
-									return pages;
-								})()}
+								<Pagination
+									currentPage={table.getState().pagination.pageIndex}
+									totalPages={table.getPageCount()}
+									onPageClick={(page) => table.setPageIndex(page)}
+									pageButtonClass={styles.pageBtn}
+									activePageClass={styles.activePage}
+									ellipsisClass={styles.ellipsis}
+								/>
 							</div>
 
 							<button

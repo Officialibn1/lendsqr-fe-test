@@ -1,0 +1,94 @@
+.dropdown {
+	background: $lendsqr-white;
+	border-radius: $radius-sm;
+	box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+	border: 1px solid rgba($lendsqr-blue, 0.14);
+	padding: 30px;
+	width: 270px;
+	max-height: 600px;
+	overflow-y: auto;
+	position: absolute;
+	top: 80px;
+	left: 20px;
+	z-index: 20;
+}
+
+.filterGroup {
+	margin-bottom: 20px;
+
+	&:last-of-type {
+		margin-bottom: 30px;
+	}
+}
+
+.label {
+	display: block;
+	@include text-style($font-size-small, 500, $lendsqr-text);
+	margin-bottom: 6px;
+}
+
+.input,
+.select {
+	width: 100%;
+	height: 40px;
+	border: 1px solid rgba($lendsqr-blue, 0.3);
+	border-radius: $radius-lg;
+	padding: 0 16px;
+	@include text-style($font-size-small, 400, $lendsqr-text);
+	background: $lendsqr-white;
+	outline: none;
+
+	&:focus {
+		border-color: $lendsqr-teal;
+	}
+
+	&::placeholder {
+		color: rgba($lendsqr-text, 0.7);
+	}
+}
+
+.select {
+	cursor: pointer;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+	background-position: right 12px center;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	padding-right: 40px;
+}
+
+.buttonGroup {
+	display: flex;
+	gap: 14px;
+}
+
+.resetButton,
+.filterButton {
+	flex: 1;
+	height: 40px;
+	border-radius: $radius-lg;
+	@include text-style($font-size-small, 600);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border: none;
+	outline: none;
+}
+
+.resetButton {
+	background: transparent;
+	color: $lendsqr-text;
+	border: 1px solid rgba($lendsqr-text, 0.3);
+
+	&:hover {
+		background: rgba($lendsqr-text, 0.05);
+	}
+}
+
+.filterButton {
+	background: $lendsqr-teal;
+	color: $lendsqr-white;
+
+	&:hover {
+		background: rgba($lendsqr-teal, 0.9);
+	}
+}

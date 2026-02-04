@@ -1,5 +1,6 @@
 import { Button, Card, Skeleton } from "@radix-ui/themes";
 import { useGetUsersQuery } from "../services/userApi";
+import type { FilterParams } from "../services/userApi";
 import styles from "@/styles/usersPage.module.scss";
 import users from "@/assets/svg-icons/users-card.svg";
 import activeUsers from "@/assets/svg-icons/crowd-card.svg";
@@ -19,14 +20,31 @@ import { userColumns } from "../components/table-columns/usersTable";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useDebounce } from "use-debounce";
+import { FilterDropdown } from "../components/ui/filter-dropdown";
 
 const UsersPage = () => {
 	"use no memo";
 	const [searchTerm, setSearchTerm] = useState("");
 	const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
-	const { data, isLoading, error, refetch } =
-		useGetUsersQuery(debouncedSearchTerm);
+	const [filters, setFilters] = useState<FilterParams>({});
+	const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
 	const [sorting, setSorting] = useState<SortingState>([]);
+
+	// Combine search term with other filters
+	const combinedFilters: FilterParams = {
+		...filters,
+		searchTerm: debouncedSearchTerm,
+	};
+
+	const { data, isLoading, error, refetch } = useGetUsersQuery(combinedFilters);
+
+	const handleApplyFilters = (newFilters: FilterParams) => {
+		setFilters(newFilters);
+	};
+
+	const handleCloseFilterDropdown = () => {
+		setIsFilterDropdownOpen(false);
+	};
 
 	const table = useReactTable({
 		data: data || [],
@@ -147,15 +165,23 @@ const UsersPage = () => {
 			</div>
 
 			<div className={styles.mainContent}>
-				{/* <Button onClick={() => refetch()}>Retry</Button> */}
 				<div className={styles.searchAndFilterContainer}>
-					<button className={styles.filterButton}>
+					<button
+						className={styles.filterButton}
+						onClick={() => setIsFilterDropdownOpen(true)}>
 						Filters{" "}
 						<CiFilter
 							stroke='#ffffff'
 							strokeWidth={1}
 						/>
 					</button>
+
+					<FilterDropdown
+						isOpen={isFilterDropdownOpen}
+						onClose={handleCloseFilterDropdown}
+						onApplyFilters={handleApplyFilters}
+						currentFilters={filters}
+					/>
 
 					<input
 						className={styles.searchField}

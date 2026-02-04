@@ -18,13 +18,16 @@ import { useState } from "react";
 import { userColumns } from "../components/table-columns/usersTable";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { useDebounce } from "use-debounce";
 
 const UsersPage = () => {
 	"use no memo";
-	const { data, isLoading, error, refetch } = useGetUsersQuery();
+	const [searchTerm, setSearchTerm] = useState("");
+	const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
+	const { data, isLoading, error, refetch } =
+		useGetUsersQuery(debouncedSearchTerm);
 	const [sorting, setSorting] = useState<SortingState>([]);
 
-	// eslint-disable-next-line react-hooks/incompatible-library
 	const table = useReactTable({
 		data: data || [],
 		columns: userColumns,
@@ -157,7 +160,9 @@ const UsersPage = () => {
 					<input
 						className={styles.searchField}
 						type='search'
-						placeholder='Search users by name, email, organizationor phone number'
+						placeholder='Search users by name, email, organization or phone number'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
 				</div>
 

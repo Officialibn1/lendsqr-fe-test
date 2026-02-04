@@ -7,7 +7,6 @@ export default defineConfig({
 	plugins: [react()],
 	resolve: {
 		alias: {
-			// This creates a shortcut '@' for the 'src' folder
 			"@": path.resolve(__dirname, "./src"),
 		},
 	},
@@ -17,5 +16,26 @@ export default defineConfig({
 				additionalData: `@use "@/styles/_variables.scss" as *;`,
 			},
 		},
+	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					"react-vendor": ["react", "react-dom"],
+					"router-vendor": ["react-router", "react-router/dom"],
+					"ui-vendor": [
+						"@radix-ui/themes",
+						"@radix-ui/react-label",
+						"@radix-ui/react-slot",
+					],
+					"table-vendor": ["@tanstack/react-table"],
+					"redux-vendor": ["@reduxjs/toolkit", "react-redux", "redux-persist"],
+					"form-vendor": ["react-hook-form", "@hookform/resolvers", "zod"],
+					"icons-vendor": ["react-icons", "lucide-react"],
+					"utils-vendor": ["date-fns", "use-debounce", "sonner"],
+				},
+			},
+		},
+		chunkSizeWarningLimit: 1000,
 	},
 });

@@ -5,15 +5,20 @@ import lendSqrLogo from "@/assets/lendqsr-logo.svg";
 import user from "@/assets/user.svg";
 import styles from "@/styles/header.module.scss";
 import { Avatar } from "@radix-ui/themes";
+import { Link } from "react-router";
 
 const Header = () => {
 	return (
 		<header className={styles.header}>
 			{/* LOGO */}
-			<img
-				src={lendSqrLogo}
-				className={styles.logo}
-			/>
+			<Link
+				to={"/"}
+				className={styles.logo}>
+				<img
+					src={lendSqrLogo}
+					className={styles.logo}
+				/>
+			</Link>
 
 			<div className={styles.searchContainer}>
 				<input

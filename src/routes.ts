@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router";
-import App from "./App";
-import Dashboard from "./pages/Dashboard";
-import UserDetails from "./pages/UserDetails";
-import UsersPage from "./pages/UsersPage";
+import { lazy } from "react";
+
+const App = lazy(() => import("./App"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const UserDetails = lazy(() => import("./pages/UserDetails"));
+const UsersPage = lazy(() => import("./pages/UsersPage"));
 
 const router = createBrowserRouter([
 	{ index: true, Component: App },

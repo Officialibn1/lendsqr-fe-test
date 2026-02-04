@@ -15,15 +15,20 @@ import {
 	flexRender,
 	type SortingState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { userColumns } from "../components/table-columns/usersTable";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useDebounce } from "use-debounce";
-import { FilterDropdown } from "../components/ui/filter-dropdown";
 import { Pagination } from "../components/ui/pagination";
 import { EmptyState } from "../components/ui/empty-state";
 import { HiOutlineUserGroup } from "react-icons/hi2";
+
+const FilterDropdown = lazy(() =>
+	import("../components/ui/filter-dropdown").then((module) => ({
+		default: module.FilterDropdown,
+	})),
+);
 
 const UsersPage = () => {
 	"use no memo";
@@ -48,7 +53,6 @@ const UsersPage = () => {
 		setIsFilterDropdownOpen(false);
 	};
 
-	// Check if any filters are active
 	const hasActiveFilters = () => {
 		return (
 			debouncedSearchTerm.trim() !== "" ||
@@ -61,7 +65,6 @@ const UsersPage = () => {
 		);
 	};
 
-	// Reset all filters
 	const handleResetAllFilters = () => {
 		setSearchTerm("");
 		setFilters({});
@@ -199,12 +202,14 @@ const UsersPage = () => {
 						/>
 					</button>
 
-					<FilterDropdown
-						isOpen={isFilterDropdownOpen}
-						onClose={handleCloseFilterDropdown}
-						onApplyFilters={handleApplyFilters}
-						currentFilters={filters}
-					/>
+					<Suspense fallback={<div>Loading filters...</div>}>
+						<FilterDropdown
+							isOpen={isFilterDropdownOpen}
+							onClose={handleCloseFilterDropdown}
+							onApplyFilters={handleApplyFilters}
+							currentFilters={filters}
+						/>
+					</Suspense>
 
 					<input
 						className={styles.searchField}

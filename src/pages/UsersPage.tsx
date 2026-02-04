@@ -22,6 +22,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { useDebounce } from "use-debounce";
 import { FilterDropdown } from "../components/ui/filter-dropdown";
 import { Pagination } from "../components/ui/pagination";
+import { EmptyState } from "../components/ui/empty-state";
+import { HiOutlineUserGroup } from "react-icons/hi2";
 
 const UsersPage = () => {
 	"use no memo";
@@ -43,6 +45,26 @@ const UsersPage = () => {
 	};
 
 	const handleCloseFilterDropdown = () => {
+		setIsFilterDropdownOpen(false);
+	};
+
+	// Check if any filters are active
+	const hasActiveFilters = () => {
+		return (
+			debouncedSearchTerm.trim() !== "" ||
+			(filters.organization && filters.organization !== "") ||
+			(filters.status && filters.status !== "") ||
+			(filters.date && filters.date !== "") ||
+			(filters.username && filters.username.trim() !== "") ||
+			(filters.email && filters.email.trim() !== "") ||
+			(filters.phoneNumber && filters.phoneNumber.trim() !== "")
+		);
+	};
+
+	// Reset all filters
+	const handleResetAllFilters = () => {
+		setSearchTerm("");
+		setFilters({});
 		setIsFilterDropdownOpen(false);
 	};
 
@@ -194,91 +216,107 @@ const UsersPage = () => {
 				</div>
 
 				<div className={styles.tableContainer}>
-					<div className={styles.tableWrapper}>
-						<table>
-							<thead>
-								{table.getHeaderGroups().map((headerGroup) => (
-									<tr key={headerGroup.id}>
-										{headerGroup.headers.map((header) => (
-											<th key={header.id}>
-												<div
-													className={styles.headerContent}
-													onClick={header.column.getToggleSortingHandler()}>
-													{flexRender(
-														header.column.columnDef.header,
-														header.getContext(),
-													)}
+					{data.length === 0 ? (
+						<EmptyState
+							icon={<HiOutlineUserGroup />}
+							title='No users found'
+							description={
+								hasActiveFilters()
+									? "No users match your current filters. Try adjusting your search criteria or clear all filters to see all users."
+									: "There are no users to display at the moment."
+							}
+							actionLabel={hasActiveFilters() ? "Clear All Filters" : undefined}
+							onAction={hasActiveFilters() ? handleResetAllFilters : undefined}
+						/>
+					) : (
+						<>
+							<div className={styles.tableWrapper}>
+								<table>
+									<thead>
+										{table.getHeaderGroups().map((headerGroup) => (
+											<tr key={headerGroup.id}>
+												{headerGroup.headers.map((header) => (
+													<th key={header.id}>
+														<div
+															className={styles.headerContent}
+															onClick={header.column.getToggleSortingHandler()}>
+															{flexRender(
+																header.column.columnDef.header,
+																header.getContext(),
+															)}
 
-													{header.id !== "actions" && (
-														<IoFilterSharp className={styles.filterIcon} />
-													)}
-												</div>
-											</th>
+															{header.id !== "actions" && (
+																<IoFilterSharp className={styles.filterIcon} />
+															)}
+														</div>
+													</th>
+												))}
+											</tr>
 										))}
-									</tr>
-								))}
-							</thead>
-							<tbody>
-								{table.getRowModel().rows.map((row) => (
-									<tr key={row.id}>
-										{row.getVisibleCells().map((cell) => (
-											<td key={cell.id}>
-												{flexRender(
-													cell.column.columnDef.cell,
-													cell.getContext(),
-												)}
-											</td>
+									</thead>
+									<tbody>
+										{table.getRowModel().rows.map((row) => (
+											<tr key={row.id}>
+												{row.getVisibleCells().map((cell) => (
+													<td key={cell.id}>
+														{flexRender(
+															cell.column.columnDef.cell,
+															cell.getContext(),
+														)}
+													</td>
+												))}
+											</tr>
 										))}
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-
-					<div className={styles.paginationFooter}>
-						<div className={styles.pageSizeSelector}>
-							<span>Showing</span>
-							<select
-								value={table.getState().pagination.pageSize}
-								onChange={(e) => table.setPageSize(Number(e.target.value))}>
-								{[50, 100, 150, 200, 300].map((size) => (
-									<option
-										key={size}
-										value={size}>
-										{size}
-									</option>
-								))}
-							</select>
-							<span>out of {data.length}</span>
-						</div>
-
-						<div className={styles.paginationControls}>
-							<button
-								onClick={() => table.previousPage()}
-								disabled={!table.getCanPreviousPage()}
-								className={styles.pagBtn}>
-								<FaChevronLeft size={16} />
-							</button>
-
-							<div className={styles.pageNumbers}>
-								<Pagination
-									currentPage={table.getState().pagination.pageIndex}
-									totalPages={table.getPageCount()}
-									onPageClick={(page) => table.setPageIndex(page)}
-									pageButtonClass={styles.pageBtn}
-									activePageClass={styles.activePage}
-									ellipsisClass={styles.ellipsis}
-								/>
+									</tbody>
+								</table>
 							</div>
 
-							<button
-								onClick={() => table.nextPage()}
-								disabled={!table.getCanNextPage()}
-								className={styles.pagBtn}>
-								<FaChevronRight size={16} />
-							</button>
-						</div>
-					</div>
+							<div className={styles.paginationFooter}>
+								<div className={styles.pageSizeSelector}>
+									<span>Showing</span>
+									<select
+										value={table.getState().pagination.pageSize}
+										onChange={(e) => table.setPageSize(Number(e.target.value))}>
+										{[50, 100, 150, 200, 300].map((size) => (
+											<option
+												key={size}
+												value={size}>
+												{size}
+											</option>
+										))}
+									</select>
+									<span>out of {data.length}</span>
+								</div>
+
+								<div className={styles.paginationControls}>
+									<button
+										onClick={() => table.previousPage()}
+										disabled={!table.getCanPreviousPage()}
+										className={styles.pagBtn}>
+										<FaChevronLeft size={16} />
+									</button>
+
+									<div className={styles.pageNumbers}>
+										<Pagination
+											currentPage={table.getState().pagination.pageIndex}
+											totalPages={table.getPageCount()}
+											onPageClick={(page) => table.setPageIndex(page)}
+											pageButtonClass={styles.pageBtn}
+											activePageClass={styles.activePage}
+											ellipsisClass={styles.ellipsis}
+										/>
+									</div>
+
+									<button
+										onClick={() => table.nextPage()}
+										disabled={!table.getCanNextPage()}
+										className={styles.pagBtn}>
+										<FaChevronRight size={16} />
+									</button>
+								</div>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 		</section>

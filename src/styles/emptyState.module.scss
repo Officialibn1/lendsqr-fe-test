@@ -1,0 +1,46 @@
+.emptyState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 20px;
+	text-align: center;
+	min-height: 400px;
+}
+
+.icon {
+	margin-bottom: 24px;
+	opacity: 0.6;
+
+	svg {
+		width: 64px;
+		height: 64px;
+		color: $lendsqr-text;
+	}
+}
+
+.content {
+	max-width: 400px;
+}
+
+.title {
+	@include text-style($font-size-h2, 600, $lendsqr-blue);
+	margin-bottom: 12px;
+}
+
+.description {
+	@include text-style($font-size-base, 400, $lendsqr-text);
+	margin-bottom: 32px;
+	line-height: 1.5;
+}
+
+.actionButton {
+	@include btn-base($lendsqr-teal, $lendsqr-white, 12px, 24px);
+	font-size: $font-size-small;
+	text-transform: none;
+	letter-spacing: normal;
+
+	&:hover {
+		background-color: rgba($lendsqr-teal, 0.9);
+	}
+}

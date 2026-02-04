@@ -1,5 +1,7 @@
 export interface IUser {
 	id: string;
+	lendqsrId: string;
+	tier: number;
 	firstName: string;
 	lastName: string;
 	orgName: string;
@@ -9,6 +11,7 @@ export interface IUser {
 	status: "Active" | "Inactive" | "Pending" | "Blacklisted";
 	accountBalance: number;
 	accountNumber: string;
+	bankName: string;
 	createdAt: string;
 	lastActiveDate: string;
 	profile: {
@@ -43,7 +46,7 @@ export interface IUser {
 		lastName: string;
 		phoneNumber: string;
 		gender: string;
-		address: string;
+		emailAddress: string;
 		relationship: string;
 	};
 }

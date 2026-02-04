@@ -1,0 +1,283 @@
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: 100%;
+}
+
+.backLink {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: fit-content;
+	white-space: nowrap;
+	text-decoration: none;
+	font-size: $font-size-base;
+}
+
+.backLinkIcon {
+	width: 30px;
+	height: 30px;
+}
+
+.userDetailsHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.topActions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	gap: 20px;
+
+	@include tablet {
+		flex-direction: row;
+	}
+
+	h2 {
+		@include text-style(24px, 600, $lendsqr-blue);
+	}
+}
+
+.actionButtons {
+	display: flex;
+	gap: 20px;
+	max-width: 400px;
+	flex-direction: column;
+
+	@include tablet {
+		flex-direction: row;
+	}
+	.blacklistBtn {
+		@include btn-base(transparent, $error-red, 14px, 16px);
+		border: 1px solid $error-red;
+	}
+	.activateBtn {
+		@include btn-base(transparent, $lendsqr-teal, 14px, 16px);
+		border: 1px solid $lendsqr-teal;
+	}
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	background: $lendsqr-white;
+	border-radius: $radius-sm;
+	border: 1px solid rgba($lendsqr-blue, 0.06);
+	box-shadow: 3px 5px 20px 0px #0000000a;
+
+	@include desktop {
+		gap: 30px;
+	}
+}
+
+.profileInfoContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin: 20px 10px;
+
+	.verticalLine {
+		display: none;
+		width: 1px;
+		height: 100px;
+
+		@include desktop {
+			display: block;
+			background-color: rgba($lendsqr-text, 0.1);
+			margin: 0 20px;
+		}
+
+		@include desktop-big {
+			margin: 0 30px;
+		}
+	}
+
+	@include desktop {
+		flex-direction: row;
+		align-items: center;
+		margin: 30px;
+		gap: 0;
+	}
+}
+
+.avatarAndName {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	width: fit-content;
+
+	.avaterContiner {
+		width: 100px;
+		height: 70px;
+		border-radius: 100%;
+		overflow: hidden;
+		background-color: rgba($color: $lendsqr-blue, $alpha: 0.2);
+
+		@include tablet {
+			width: 150px;
+			height: 100px;
+			border-radius: 100%;
+		}
+
+		> img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	h1 {
+		font-size: 22px;
+		font-weight: 500;
+		color: $lendsqr-blue;
+		white-space: nowrap;
+	}
+
+	p {
+		font-size: $font-size-small;
+		font-weight: 400;
+	}
+}
+
+.userTier {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: fit-content;
+	width: fit-content;
+
+	h1 {
+		font-size: $font-size-small;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	div {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+
+		> img {
+			width: 16px;
+			height: 16px;
+		}
+	}
+}
+
+.accountDetails {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	> h1 {
+		font-size: 22px;
+		font-weight: 500;
+		color: $lendsqr-blue;
+	}
+
+	> p {
+		font-size: $font-size-xs;
+		font-weight: 400;
+		color: $lendsqr-blue;
+		word-wrap: wrap;
+	}
+
+	@include desktop {
+		width: min-content;
+	}
+
+	@include desktop-big {
+		width: fit-content;
+	}
+}
+
+.tabLinksContainer {
+	display: flex;
+	width: 100%;
+	overflow-x: auto;
+}
+
+.tabLinks {
+	display: flex;
+	flex-wrap: nowrap;
+	width: fit-content;
+	padding: 0 30px;
+
+	> a {
+		text-decoration: none;
+		font-size: $font-size-base;
+		font-weight: 400;
+		color: $lendsqr-blue;
+		border-bottom: 2px solid transparent;
+		white-space: nowrap;
+		padding: 10px 30px;
+
+		&.active {
+			color: $lendsqr-teal;
+			border-bottom-color: $lendsqr-teal;
+			color: $lendsqr-teal;
+		}
+
+		@include desktop-large {
+			flex: 1;
+		}
+	}
+
+	@include desktop-large {
+		width: 100%;
+	}
+}
+
+.infoCard {
+	background: $lendsqr-white;
+	border-radius: $radius-sm;
+	border: 1px solid rgba($lendsqr-blue, 0.06);
+	box-shadow: 3px 5px 20px 0px #0000000a;
+	padding: 10px 30px;
+}
+
+.infoSection {
+	padding: 50px 0;
+	border-bottom: 1px solid rgba($lendsqr-blue, 0.1);
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	h4 {
+		@include text-style($font-size-base, 600, $lendsqr-blue);
+		margin-bottom: 40px;
+	}
+}
+
+.infoGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 30px;
+}
+
+.infoGrid2 {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 30px;
+}
+
+.infoGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	label {
+		@include text-style($font-size-xs, 400, $lendsqr-text);
+		text-transform: uppercase;
+	}
+	p {
+		@include text-style($font-size-small, 600, $lendsqr-text);
+		white-space: nowrap;
+	}
+}

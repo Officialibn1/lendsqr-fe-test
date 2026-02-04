@@ -54,10 +54,15 @@ $font-size-xs: 12px;
 }
 
 // Button mixin
-@mixin btn-base($bg-color: $lendsqr-teal, $text-color: $lendsqr-white) {
+@mixin btn-base(
+	$bg-color: $lendsqr-teal,
+	$text-color: $lendsqr-white,
+	$paddingY: 14px,
+	$paddingX: 24px
+) {
 	background-color: $bg-color;
 	color: $text-color;
-	padding: 14px 24px;
+	padding: $paddingY $paddingX;
 	border: none;
 	border-radius: $radius-lg;
 	font-weight: 600;
@@ -69,6 +74,7 @@ $font-size-xs: 12px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	white-space: nowrap;
 
 	&:hover {
 		background-color: color.adjust($bg-color, $lightness: -10%);

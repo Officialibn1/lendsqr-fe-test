@@ -14,7 +14,7 @@ This assessment tests competence in building a production-ready admin dashboard 
 
 ## 🚀 Live Demo
 
-[View Live Application](https://your-deployment-url.com)
+[View Live Application](https://isah-ibn-muhammad-lendsqr-fe-test.vercel.app/)
 
 ## 📋 Features Implemented
 

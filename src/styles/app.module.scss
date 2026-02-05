@@ -1,159 +1,165 @@
 .signinPage {
-	background-color: $lendsqr-white;
-	display: grid;
-	width: 100%;
+    background-color: $lendsqr-white;
+    display: grid;
+    width: 100%;
 
-	@include tablet {
-		grid-template-columns: 60% 40%;
-	}
+    @include tablet {
+        grid-template-columns: 60% 40%;
+    }
 
-	@include desktop {
-		grid-template-columns: 50% 50%;
-	}
+    @include desktop {
+        grid-template-columns: 50% 50%;
+    }
 }
 
 .imageSectionContainer {
-	display: none;
+    display: none;
 
-	@include tablet {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 80px;
-		// justify-content: center;
-		padding: 40px 40px;
-	}
+    @include tablet {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        // justify-content: center;
+        padding: 40px 40px;
+    }
 }
 
 .mobileLogo {
-	width: 173.76px;
-	height: 36px;
-	margin: 0px auto 180px;
+    width: 173.76px;
+    height: 36px;
+    margin: 0px auto 180px;
 
-	@include tablet {
-		display: none;
-	}
+    @include tablet {
+        display: none;
+    }
 }
 
 .logo {
-	width: 173.76px;
-	height: 36px;
-	margin: 80px 40px 80px;
+    width: 173.76px;
+    height: 36px;
+    margin: 80px 40px 80px;
 }
 
 .signInImage {
-	width: 100%;
-	// height: 800px;
-	// aspect-ratio: 16/9;
+    width: 100%;
+    // height: 800px;
+    // aspect-ratio: 16/9;
 }
 
 .titleContainer {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 60px;
 }
 
 .title {
-	@include text-style($font-size-h1, 700, $lendsqr-blue, 120%);
+    @include text-style($font-size-h1, 700, $lendsqr-blue, 120%);
+    font-family: "Montserrat", sans-serif;
 }
 
 .description {
-	@include text-style($font-size-body, 400, $lendsqr-text);
+    @include text-style($font-size-body, 400, $lendsqr-text);
+    font-family: "Montserrat", sans-serif;
 }
 
 .signinFormContainer {
-	background-color: rgba($lendsqr-text, 0.02);
-	padding: 40px 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	height: 100dvh;
-	justify-content: center;
-	width: 100%;
+    background-color: rgba($lendsqr-text, 0.02);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100dvh;
+    justify-content: center;
+    width: 100%;
 
-	@include desktop {
-		padding: 0px 80px;
-	}
+    @include desktop {
+        padding: 0px 80px;
+    }
 
-	@include desktop-large {
-		padding: 0px 100px;
-	}
+    @include desktop-large {
+        padding: 0px 100px;
+    }
 }
 
 .form {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	max-width: 450px;
-	gap: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    gap: 24px;
 }
 
 .fieldGroup {
-	position: relative;
-	width: 100%;
-	// border: 2px solid red;
+    position: relative;
+    width: 100%;
+    // border: 2px solid red;
 }
 
 .input {
-	width: 100%;
-	padding: 8px 16px;
-	height: 50px;
-	border: 2px solid rgba($lendsqr-blue, 0.15);
-	border-radius: $radius-base;
-	font-size: 14px;
-	transition: border-color 0.2s;
-	background-color: transparent;
+    width: 100%;
+    padding: 8px 16px;
+    height: 50px;
+    border: 2px solid rgba($lendsqr-blue, 0.15);
+    border-radius: $radius-base;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    background-color: transparent;
+    font-family: "Montserrat", sans-serif;
 
-	&:focus {
-		outline: none;
-		border-color: $lendsqr-teal;
-	}
+    &:focus {
+        outline: none;
+        border-color: $lendsqr-teal;
+    }
 }
 
 .showHidePassword {
-	position: absolute;
-	padding: 0px 10px;
-	height: 50px;
-	top: 0px;
-	right: 0px;
-	width: fit-content;
-	background-color: transparent;
-	font-size: $font-size-xs;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	// border: 2px solid green;
+    position: absolute;
+    padding: 0px 10px;
+    height: 50px;
+    top: 0px;
+    right: 0px;
+    width: fit-content;
+    background-color: transparent;
+    font-size: $font-size-xs;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    // border: 2px solid green;
 
-	> span {
-		color: $lendsqr-teal;
-	}
+    > span {
+        color: $lendsqr-teal;
+    }
 }
 
 .inputError {
-	border-color: $error-red;
+    border-color: $error-red;
 }
 
 .errorText {
-	color: $error-red;
-	font-size: 12px;
-	margin-top: 4px;
+    color: $error-red;
+    font-size: 12px;
+    margin-top: 4px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .submitBtn {
-	@include btn-base($lendsqr-teal, $lendsqr-white);
-	cursor: pointer;
-	margin-top: 6px;
+    @include btn-base($lendsqr-teal, $lendsqr-white);
+    cursor: pointer;
+    margin-top: 6px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .forgotPassword {
-	@include text-style($font-size-xs, 600, $lendsqr-teal);
+    @include text-style($font-size-xs, 600, $lendsqr-teal);
+    font-family: "Montserrat", sans-serif;
 
-	&:active {
-		color: $lendsqr-teal;
-	}
+    &:active {
+        color: $lendsqr-teal;
+    }
 
-	&:hover {
-		color: $lendsqr-teal;
-	}
+    &:hover {
+        color: $lendsqr-teal;
+    }
 }
